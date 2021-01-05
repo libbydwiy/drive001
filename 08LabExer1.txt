@@ -1,0 +1,25 @@
+db.employees.insert({_id: 1, Name: "Steve Badiola",Salary: 16099.55 ,Position: "President",ReportingTo: null});
+db.employees.insert({_id: 2,Name: "Jamir Garcia",Salary: 14567.12,Position: "Vice-President",Rank: 2,ReportingTo: "President"});
+db.employees.insert({_id: 3,Name: "Reg Rubio",Salary: 13891.22,Position: "Secretary",Rank: 3,ReportingTo: "Vice-President" });
+db.employees.insert({_id: 4,Name: "Ian Tayao",Salary: 13000,Position: "Treasurer",Rank: 4,ReportingTo:" Secretary, Vice-President"});
+
+db.employees.update( { _id: 1 },{ $unset: {"ReportingTo": ""}})
+
+db.employees.update( { _id: 1 },{ $inc: { Salary: 5000 }});
+db.employees.update( { _id: 2 },{ $inc: { Salary: 5000 }});
+db.employees.update( { _id: 3 },{ $inc: { Salary: 5000 }});
+db.employees.update( { _id: 4 },{ $inc: { Salary: 5000 }});
+
+db.employees.update({_id: 3}, { $set: {"ReportingTo": ["Vice-President","President"]}})
+db.employees.update({_id: 4}, { $set: {"ReportingTo": ["Secretary","Vice-President","President"]}})
+
+db.employees.find( { Salary: { $gt: 21000 }})
+
+db.employees.find({ "Name": { "$regex": "S|R" }})
+
+db.employees.find({"ReportingTo": { "$ne": "President" }})
+
+db.employees.update({ _id: 1 }, {$set: { "Contact": { Email: "steve.badiola.gov.ph", Phone: "+1 1234567" } }});
+db.employees.update({ _id: 2 }, {$set: { "Contact": { Email: "jamir.garcia.gov.ph", Phone: "+2 1234567" } }});
+db.employees.update({ _id: 3 }, {$set: { "Contact": { Email: "reg.rubio.gov.ph", Phone: "+3 1234567" } }});
+db.employees.update({ _id: 4 }, {$set: { "Contact": { Email: "ian.tayao.gov.ph", Phone: "+4 1234567" } }});
